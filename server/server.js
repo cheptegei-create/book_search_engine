@@ -1,10 +1,13 @@
+//importing express package, apollo server, and path
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 
+// importing our typedefs, resolvers, and database connection
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
+// defining our port, app, and server
 const PORT = process.env.PORT || 3001;
 const app = express();
 const server = new ApolloServer({
