@@ -1,6 +1,7 @@
 // import user model
 // import user from models
-const { User } = require('../models');
+const { User, Book } = require('../models');
+const { AuthenticationError } = require('apollo-server-express');
 // import sign token function from auth
 const { signToken } = require('../utils/auth');
 
@@ -9,7 +10,11 @@ const resolvers = {
     Query: {
       me: async (parent, args, context) => {
         if (context.user) {
-          return User.findOne({ _id: context.user._id });
+          const userData = await User.findOne({})
+          .select('-__v -password')
+          .populate('books')
+      
+          return userData;
         }
         throw new AuthenticationError('You need to be logged in!');
       },
@@ -40,11 +45,13 @@ const resolvers = {
       },
       saveBook: async (parent, { book }, context) => {
         if (context.user) {
-          return User.findOneAndUpdate(
+          const updatedInfo = await User.findOneAndUpdate(
             { _id: context.user._id },
             { $addToSet: { savedBooks: book } },
             { new: true, runValidators: true }
           );
+
+          return updatedInfo;
   
         }
         throw new AuthenticationError('You need to be logged in!');
@@ -52,11 +59,13 @@ const resolvers = {
 
       removeBook: async (parent, { params }, context) => {
         if (context.user) {  
-          return User.findOneAndUpdate(
+          const updatedInfo = await User.findOneAndUpdate(
             { _id: context.user._id },
             { $pull: { savedBooks: { bookId: params.bookId } } },
             { new: true }
           );
+
+          return updatedInfo;
   
         }
         throw new AuthenticationError('You need to be logged in!');
