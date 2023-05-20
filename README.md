@@ -20,9 +20,9 @@ After cloning the application to your local environment, run `npm install`, `npm
 
 Once logged in to the application, the user can search for books, save them, and delete them from the saved list.
 
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
+
+[Walkthrough video](https://drive.google.com/file/d/1OMAN62TMSB8cLaaU9Kdx0mAK3WU0HG8D/view)
+
 
 ## Credits
 
