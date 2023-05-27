@@ -14,7 +14,7 @@ To build a fully functioning MERN application that allows users search and save 
 
 ## Installation
 
-After cloning the application to your local environment, run `npm install`, `npm run build`, and then `npm run develop`. An alternaive is that you can click this heroku link
+After cloning the application to your local environment, run `npm install`, `npm run build`, and then `npm run develop`. An alternative is that you can click this heroku link https://whispering-peak-89757.herokuapp.com/
 
 ## Usage
 
