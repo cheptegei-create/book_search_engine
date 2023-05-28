@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import {
   Container,
+  FormGroup,
   Col,
   Form,
   Button,
@@ -9,6 +10,7 @@ import {
 } from 'react-bootstrap';
 
 import Auth from '../utils/auth';
+// eslint-disable-next-line
 import { saveBook, searchGoogleBooks } from '../utils/API';
 import { useMutation } from '@apollo/client';
 import {SAVE_BOOK} from '../utils/mutations';
@@ -79,7 +81,8 @@ const SearchBooks = () => {
     try {
       // const response = await saveBook(bookToSave, token);
 
-      await saveBook({
+      // eslint-disable-next-line
+      const {data} = await saveBook({
         variables: { input: bookToSave }
       });
 
@@ -92,7 +95,7 @@ const SearchBooks = () => {
 
   return (
     <>
-      <div className="text-light bg-dark p-5">
+      <FormGroup className="text-light bg-dark p-5">
         <Container>
           <h1>Search for Books!</h1>
           <Form onSubmit={handleFormSubmit}>
@@ -115,7 +118,7 @@ const SearchBooks = () => {
             </Row>
           </Form>
         </Container>
-      </div>
+      </FormGroup>
 
       <Container>
         <h2 className='pt-5'>
