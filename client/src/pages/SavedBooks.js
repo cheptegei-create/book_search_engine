@@ -1,4 +1,5 @@
 import {
+  ModalHeader,
   Container,
   Card,
   Button,
@@ -18,6 +19,7 @@ const SavedBooks = () => {
   const [removeBook] = useMutation(REMOVE_BOOK);
 
   const userData = data?.me || [];
+  console.log(userData);
 
   if(!userData?.username) {
     return (
@@ -37,7 +39,8 @@ const SavedBooks = () => {
     }
 
     try {
-      await removeBook({
+      // eslint-disable-next-line
+      const {data} = await removeBook({
         variables: { bookId }
       });
 
@@ -55,11 +58,11 @@ const SavedBooks = () => {
 
   return (
     <>
-      <div fluid="true" className="text-light bg-dark p-5">
+      < ModalHeader fluid="true" className="text-light bg-dark p-5">
         <Container>
           <h1>Viewing saved books!</h1>
         </Container>
-      </div>
+      </ ModalHeader>
       <Container>
         <h2 className='pt-5'>
           {userData.savedBooks.length
